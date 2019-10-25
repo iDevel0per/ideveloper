@@ -1,0 +1,98 @@
+<style type="text/css">
+    .apple {
+        animation-name: apple;
+        animation-duration: 2s;
+    }
+    .apple2 {
+        animation-name: applekit;
+        animation-duration: 2s
+    }
+    .back {
+        
+    }
+
+@keyframes apple {
+    0% {transform: translateX(7%);}
+    100%{transform: translateX(0%);}
+}
+@keyframes applekit {
+    0% {transform: translateY(50%);}
+    100%{transform: translateY(0%);}
+}
+
+
+</style>
+
+
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Dim the Lights</title>
+    <script type="text/javascript">
+        var restoreColor;
+        function dimLights() {
+            restoreColor = document.body.style.backgroundColor;
+            var theBody = document.body;
+            theBody.style.backgroundColor = "#2b2b2b";
+            var theRest = document.getElementById("restofpage");
+            theRest.style.opacity = 0.25;
+        }
+        function lightsUp() {
+            var theBody = document.body;
+            theBody.style.backgroundColor = restoreColor;
+            var theRest = document.getElementById("restofpage");
+            theRest.style.opacity = 1;
+       }
+        function addListener() {
+            var myVideo = document.getElementsByTagName('video')[0];
+            myVideo.addEventListener('playing', dimLights, false);
+            myVideo.addEventListener('pause', lightsUp, false);
+            myVideo.addEventListener('ended', lightsUp, false);
+        }
+    </script>
+    <style>
+        body {
+            background-color: #888888;
+            color: #ffdddd;
+            text-shadow: 0.1em 0.1em #333;
+            -webkit-transition-property: background-color;
+            -webkit-transition-duration: 4s;
+        }
+        #restofpage {
+           color: #ffffff;
+            width: 640px;
+            -webkit-transition-property: opacity;
+            -webkit-transition-duration: 2s;
+        }
+    </style>
+</head>
+<body onload="addListener()">
+    <div align="center">
+        <h1 class="apple">Dim the Lights, Please</h1>
+        <video id="player" controls
+            preload="none" class="apple">
+            <source src="http://s1.slotex.pl:7484/stream/1/;?type=http">
+        </video>
+        <div id="restofpage">
+            <h2 class="apple2" style="color:#ffdddd;" >
+            This webpage uses HTML5 video, JavaScript, DOM events, and CSS.
+            </h2>
+            <h3 class="apple2">
+             When the audio starts playing, a DOM event is fired, and a JavaScript
+            function "dims the lights" by fading the webpage background color
+            to black and lowering the opacity of the rest of the page.
+            </h3>
+            <h3 class="apple2">
+            When the audio pauses or ends, another event is fired and a second
+            JavaScript function brings the lights back up.
+            </h3>
+            <h4 class="apple2">
+            Try it!
+            </h4>
+        </div>
+    </div>
+</body>
+</html>
+
